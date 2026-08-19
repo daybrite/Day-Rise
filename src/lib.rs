@@ -1,6 +1,12 @@
 //! Day Rise — a [Day](https://daybrite.dev) app. `root()` is the whole UI, shared by every
 //! platform; each navigation destination lives in its own module under `pages/`.
 
+// This crate is named after the app, and that name is the app's identity everywhere else: the
+// binary, the packaged artifact, and the ident `day build` derives for the iOS staticlib and the
+// Android cdylib. Renaming the crate to satisfy the style lint would desync all four, so the lint
+// is answered here instead — it fires on the crate name, which is only addressable at the root.
+#![allow(non_snake_case)]
+
 use day::prelude::*;
 
 mod model;
