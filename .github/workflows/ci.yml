@@ -61,9 +61,17 @@ jobs:
               --appid dev.daybrite.dayrise --toolkit "$TARGETS" )
 
           # Compare only what this repo actually carries as SOURCE. Everything a build leaves
-          # behind — target/, build/, Cargo.lock, the Xcode workspace, Gradle's caches — is
-          # already gitignored by the scaffold itself, so deriving the list from git means this
-          # check follows the scaffold's own .gitignore instead of duplicating it here.
+          # behind — target/, build/, the Xcode workspace, Gradle's caches — is already gitignored
+          # by the scaffold itself, so deriving the list from git means this check follows the
+          # scaffold's own .gitignore instead of duplicating it here.
+          #
+          # Cargo.lock is the one thing .gitignore cannot express, and it is skipped explicitly in
+          # both directions below. It is deliberately COMMITTED here (see .gitignore's note: the
+          # build legs pass `--locked`, which refuses to create a missing lock), while `day new`
+          # emits no lock at all — so it is present here and absent from a fresh scaffold, which
+          # would report as drift on every single run. Even once both existed they could not match:
+          # `update-day-deps: true` below moves the day dependency to main, so the lock tracks
+          # whatever was current when it was last written, which is the point of committing it.
           #
           # `--cached --others --exclude-standard` is tracked files PLUS untracked ones that are
           # not ignored. Plain `git ls-files` lists only the index, which on a freshly scaffolded
@@ -78,12 +86,14 @@ jobs:
           fi
           echo "comparing $COUNT files"
 
-          # `.github/` is the one deliberate exception: `day new` does not scaffold a workflow,
-          # so this very file would otherwise report itself as drift forever.
+          # Two deliberate exceptions. `.github/` because `day new` scaffolds no workflow, so this
+          # very file would otherwise report itself as drift forever; `Cargo.lock` for the reason
+          # above. The lock pattern is the repo root's exactly — the scaffold is a single cargo
+          # workspace, so a lock anywhere else would be drift worth reporting.
           FAILED=0
           : > /tmp/drift.txt
           while IFS= read -r f; do
-            case "$f" in .github/*) continue ;; esac
+            case "$f" in .github/*|Cargo.lock) continue ;; esac
             if [ ! -e "$FRESH/Day-Rise/$f" ]; then
               echo "  + $f  (in this repo, NOT produced by \`day new\`)" >> /tmp/drift.txt
               FAILED=1
@@ -94,9 +104,10 @@ jobs:
           done < /tmp/files.txt
 
           # And the other direction: something `day new` emits that this checkout has dropped.
+          # Same exceptions, so a future CLI that DOES emit a lock does not start failing this.
           while IFS= read -r f; do
             rel=${f#"$FRESH/Day-Rise/"}
-            case "$rel" in .git/*|.github/*) continue ;; esac
+            case "$rel" in .git/*|.github/*|Cargo.lock) continue ;; esac
             if [ ! -e "$rel" ]; then
               echo "  - $rel  (produced by \`day new\`, MISSING here)" >> /tmp/drift.txt
               FAILED=1
