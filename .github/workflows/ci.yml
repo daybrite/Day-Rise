@@ -27,7 +27,7 @@ jobs:
   scaffold-drift:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install the day CLI
         uses: daybrite/actions/.github/actions/setup-day-cli@main
@@ -55,7 +55,10 @@ jobs:
           echo "targets from Day.toml: $TARGETS"
 
           FRESH=$(mktemp -d)
-          ( cd "$FRESH" && "$DAY_BIN" new app Day-Rise --title "Day Rise" --no-input --toolkit "$TARGETS" )
+          # --appid is what gives website/site.toml this repo's real Pages host; without it the
+          # scaffold writes the `example.github.io` placeholder and every run reports that as drift.
+          ( cd "$FRESH" && "$DAY_BIN" new app Day-Rise --title "Day Rise" --no-input \
+              --appid dev.daybrite.dayrise --toolkit "$TARGETS" )
 
           # Compare only what this repo actually carries as SOURCE. Everything a build leaves
           # behind — target/, build/, Cargo.lock, the Xcode workspace, Gradle's caches — is

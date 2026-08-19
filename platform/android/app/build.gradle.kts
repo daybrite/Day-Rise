@@ -41,10 +41,10 @@ val daySigning = Properties().apply {
 }
 
 android {
-    namespace = "dev.example.dayrise"
+    namespace = "dev.daybrite.dayrise"
     compileSdk = 35
     defaultConfig {
-        applicationId = dayApp.getProperty("applicationId") ?: "dev.example.dayrise"
+        applicationId = dayApp.getProperty("applicationId") ?: "dev.daybrite.dayrise"
         minSdk = 24
         targetSdk = 35
         versionCode = dayApp.getProperty("versionCode")?.toInt() ?: 1

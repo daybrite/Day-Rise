@@ -2,7 +2,7 @@
 # element id and route, on any target. It is both the app's test and its demo — every feature the
 # starter ships is exercised here, in the order a person would meet them.
 #
-#     day launch -p macos-appkit --script dayscript/demo.yaml
+#     day launch -p ios-uikit --script dayscript/demo.yaml
 #
 # Steps that need a window toolbar or a menu bar carry `skip_on:` for the platforms that have
 # neither; the same commands are reachable there through the navigation bar and the row menus.

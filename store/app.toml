@@ -3,7 +3,7 @@
 #
 # `day store stage` turns this tree into the layouts App Store Connect and Google Play expect,
 # under build/day/fastlane/<target>/, ready for `fastlane deliver` / `fastlane supply`.
-bundle-id = "dev.example.dayrise"
+bundle-id = "dev.daybrite.dayrise"
 
 # apple-category = "DEVELOPER_TOOLS"    # App Store primary category
 # (Google Play's category is set in the Play Console — `supply` cannot write it.)

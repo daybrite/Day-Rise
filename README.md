@@ -10,8 +10,8 @@ feature for each target:
 
 ```sh
 day doctor                  # check the toolchains for your targets
-day launch -p macos-appkit   # build + run
-day build  -p macos-appkit   # build only
+day launch -p ios-uikit   # build + run
+day build  -p ios-uikit   # build only
 ```
 
 Targets live in `Day.toml`. To use plain cargo, pass the backend feature yourself, e.g.
@@ -29,7 +29,7 @@ Targets live in `Day.toml`. To use plain cargo, pass the backend feature yoursel
 - `resource/locales/en/app.ftl` — every user-facing string ([localization](https://daybrite.dev/docs/localization)).
 - `dayscript/demo.yaml` — a [dayscript](https://daybrite.dev/docs/dayscript) walkthrough that
   drives every feature this app ships, and doubles as its UI test:
-  `day launch -p macos-appkit --script dayscript/demo.yaml`.
+  `day launch -p ios-uikit --script dayscript/demo.yaml`.
 - `platform/` — the thin native host projects (Xcode / Gradle / hvigor) the mobile targets
   build through; `day build` keeps their identity in sync with `Day.toml`.
 - `Day.toml` — app metadata + the target list.
