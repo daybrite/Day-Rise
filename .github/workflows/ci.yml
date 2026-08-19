@@ -35,7 +35,7 @@ jobs:
           # The framework this reference is generated FROM. `latest` would compare the checkout
           # against a published CLI while the template lives on main, and report drift that is
           # really just a release lag.
-          day-version: main
+          version: main
 
       - name: Scaffold a fresh app and diff it against this checkout
         run: |
