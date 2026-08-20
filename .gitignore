@@ -7,6 +7,11 @@
 # `--locked` REFUSES to create a missing lock rather than resolving fresh). Run a build once and
 # commit the file it writes.
 
+# ... except for Day-Rise in particular, we DO want Cargo.lock because we want
+# the dependencies to be "ever-green"
+Cargo.lock
+
+
 # Machine-local: `day patch --local <day-checkout>` writes this to build against a checkout
 # instead of the git dependency. CI has no such file and resolves git.
 /.cargo/config.toml
