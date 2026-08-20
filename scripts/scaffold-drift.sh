@@ -24,9 +24,12 @@ set -euo pipefail
 #   .git/       not source.
 #   .github/    `day new` scaffolds no workflow, so the CI file would report itself forever.
 #   scripts/    this script, likewise: `day new` does not produce it.
-#   Cargo.lock  deliberately committed (see .gitignore) while `day new` emits no lock at all, so
-#               it is present here and absent there on every single run. The repo root's exactly —
-#               the scaffold is a single cargo workspace, so a lock elsewhere would be real drift.
+#   Cargo.lock  `day new` emits no lock at all, and this repository does not commit one either
+#               (it tracks day's main, so the preflight resolves the lock itself — see ci.yml).
+#               A local `day patch --local` build still WRITES one, pointing at the developer's
+#               own day checkout, so it turns up here untracked and must not read as drift. The
+#               repo root's exactly — the scaffold is a single cargo workspace, so a lock
+#               elsewhere would be real drift.
 # ---------------------------------------------------------------------------------------------
 is_excluded() {
   case "$1" in

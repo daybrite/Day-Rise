@@ -63,10 +63,13 @@ jobs:
       scripts: auto
       preflight-checks: fmt, clippy, test
       # Build against day's main, not the revision Cargo.lock happens to pin. The lock is
-      # committed because the checks above pass `--locked` and it will not create one — but this
-      # repository exists to prove the CURRENT framework still builds what `day new` emits, and a
-      # lock frozen at whatever revision it was last generated against would quietly stop doing
-      # that. Same reasoning as `day-version: main` above, applied to the app's own dependency.
+      # NOT committed here, unlike an ordinary app: this one pins nothing. The preflight resolves
+      # the lock itself and then moves the day crates to the tip of main, so a committed lock would
+      # be overwritten before it was ever read — while still being something a local `day patch
+      # --local` build silently rewrites into machine-local paths and something a human can commit
+      # by accident. This repository exists to prove the CURRENT framework still builds what
+      # `day new` emits, so tracking main IS the pin. Same reasoning as `day-version: main` above,
+      # applied to the app's own dependency.
       update-day-deps: true
       # website/site.toml turns this into a full daysite project site, with the web-dom build
       # hosted under webapp/.
