@@ -30,10 +30,16 @@ set -euo pipefail
 #               own day checkout, so it turns up here untracked and must not read as drift. The
 #               repo root's exactly — the scaffold is a single cargo workspace, so a lock
 #               elsewhere would be real drift.
+#   .gitignore  the one file this repository is DELIBERATELY not a faithful copy in. The scaffold
+#               tells an ordinary app to commit its lock, which is Cargo's guidance for an end
+#               product. Day-Rise wants the opposite: it exists to prove the CURRENT framework
+#               still builds `day new` output, so it ignores Cargo.lock and resolves day's main
+#               afresh on every run — evergreen by construction. That difference is the point of
+#               the repo, not drift, so comparing the file would fail forever.
 # ---------------------------------------------------------------------------------------------
 is_excluded() {
   case "$1" in
-    .git/* | .github/* | scripts/* | Cargo.lock) return 0 ;;
+    .git/* | .github/* | scripts/* | Cargo.lock | .gitignore) return 0 ;;
     *) return 1 ;;
   esac
 }
