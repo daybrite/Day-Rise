@@ -24,7 +24,7 @@ mock = ["day/mock"]
 crate-type = ["rlib"]
 
 [dependencies]
-day = { git = "https://github.com/daybrite/day.git" }
+day = { git = "https://github.com/daybrite/day.git", features = ["model"] }
 day-piece-datetime = { git = "https://github.com/daybrite/day.git" }
 day-piece-settings = { git = "https://github.com/daybrite/day.git" }
 day-piece-rating = { git = "https://github.com/daybrite/day.git" }
