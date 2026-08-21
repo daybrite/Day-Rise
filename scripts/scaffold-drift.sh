@@ -210,6 +210,10 @@ ADDED=(); CHANGED=(); MISSING=()
 while IFS= read -r f; do
   [ -n "$f" ] || continue
   is_excluded "$f" && continue
+  # `git ls-files --cached` lists tracked paths, including ones deleted from the working tree —
+  # which is exactly the state `--merge` leaves behind after it removes a file. Compare what is
+  # actually on disk; if the scaffold still has it, the second loop below reports it as missing.
+  [ -e "$f" ] || continue
   if [ ! -e "$SCAFFOLD/$f" ]; then
     ADDED+=("$f")
   elif ! cmp -s "$f" "$SCAFFOLD/$f"; then
