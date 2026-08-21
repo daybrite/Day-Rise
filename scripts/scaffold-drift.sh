@@ -36,10 +36,18 @@ set -euo pipefail
 #               still builds `day new` output, so it ignores Cargo.lock and resolves day's main
 #               afresh on every run — evergreen by construction. That difference is the point of
 #               the repo, not drift, so comparing the file would fail forever.
+#   icons.lock.json
+#               records which CLI rendered the icons (`"generator": "day-cli 0.2.6 (resvg-0.45)"`),
+#               so it differs from a fresh scaffold after EVERY day-cli version bump while the
+#               icons it hashes are byte-identical — a release treadmill rather than a signal. The
+#               rendered PNGs beside it are still compared here one by one, so a real icon change
+#               still fails; only the provenance stamp is skipped. `day icon --check` remains the
+#               gate that reads this file, and it is unaffected.
 # ---------------------------------------------------------------------------------------------
 is_excluded() {
   case "$1" in
     .git/* | .github/* | scripts/* | Cargo.lock | .gitignore) return 0 ;;
+    resource/icons/icons.lock.json) return 0 ;;
     *) return 1 ;;
   esac
 }
