@@ -1,5 +1,5 @@
 {
-  "generator": "day-cli 0.2.5 (resvg-0.45)",
+  "generator": "day-cli 0.2.6 (resvg-0.45)",
   "master": {
     "path": "resource/icons/icon.svg",
     "sha256": "ade56ef3d95b2779f02d5884cc415d67a749d8197c93ff451f9387fa7c5e3a1a"
