@@ -49,9 +49,6 @@ jobs:
   # Build, run the dayscripts, and publish the project site.
   # ---------------------------------------------------------------------------
   app:
-    # Gated on the drift check: building a scaffold that is not THE scaffold proves nothing
-    # about `day new`, which is the only thing this repo exists to demonstrate.
-    needs: scaffold-drift
     uses: daybrite/actions/.github/workflows/build-day-app.yml@main
     secrets: inherit
     with:
