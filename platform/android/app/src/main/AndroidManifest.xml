@@ -16,7 +16,7 @@
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize"
             android:configChanges="orientation|screenSize|uiMode|locale|density|fontScale|keyboardHidden">
-            <meta-data android:name="day.lib" android:value="Day_Rise" />
+            <meta-data android:name="day.lib" android:value="day_rise" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -20,5 +20,5 @@ dependencyResolutionManagement {
         }
     }
 }
-rootProject.name = "Day-Rise"
+rootProject.name = "day-rise"
 include(":app")

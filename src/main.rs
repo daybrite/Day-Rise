@@ -6,6 +6,6 @@ fn main() {
             size: day::prelude::Size::new(960.0, 640.0),
             ..Default::default()
         },
-        Day_Rise::root,
+        day_rise::root,
     );
 }
