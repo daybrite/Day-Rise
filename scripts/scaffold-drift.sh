@@ -183,14 +183,20 @@ fi
 # ---------------------------------------------------------------------------------------------
 FRESH="$WORK/fresh"
 mkdir -p "$FRESH"
-echo "> scaffolding $APP_NAME (title=$APP_TITLE id=$APP_ID)"
+# The name `day new` is GIVEN is this checkout's directory — the REPOSITORY name, `Day-Rise`.
+# Not the package name: `day new` lowercases that itself (`day-rise`), and it is the repository
+# spelling that reaches website/site.toml's Pages host, whose repository segment is
+# case-sensitive. Passing the package name would scaffold `daybrite.github.io/day-rise` and
+# report this repo's correct URL as drift forever.
+APP_REPO="$(basename "$ROOT")"
+echo "> scaffolding $APP_REPO (package=$APP_NAME title=$APP_TITLE id=$APP_ID)"
 echo "  targets: $TARGETS"
 # --appid is what gives website/site.toml this repo's real Pages host; without it the scaffold
 # writes the `example.github.io` placeholder and every run reports that as drift.
-( cd "$FRESH" && "$DAY_CLI" new app "$APP_NAME" --title "$APP_TITLE" --no-input \
+( cd "$FRESH" && "$DAY_CLI" new app "$APP_REPO" --title "$APP_TITLE" --no-input \
     --appid "$APP_ID" --toolkit "$TARGETS" ) >/dev/null
-SCAFFOLD="$FRESH/$APP_NAME"
-[ -d "$SCAFFOLD" ] || { echo "error: day new produced no $APP_NAME/ directory" >&2; exit 1; }
+SCAFFOLD="$FRESH/$APP_REPO"
+[ -d "$SCAFFOLD" ] || { echo "error: day new produced no $APP_REPO/ directory" >&2; exit 1; }
 
 # ---------------------------------------------------------------------------------------------
 # Compare. Both directions, because a file this checkout DROPPED is drift just as much as one it
