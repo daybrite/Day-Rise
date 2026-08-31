@@ -58,6 +58,16 @@ jobs:
       # `auto` picks up dayscript/demo.yaml — the walkthrough that drives every feature the
       # app ships, and whose screenshots become the project site's gallery.
       scripts: auto
+      # Two iOS form factors, each its own job, its own screenshot artifact, and its own column
+      # in the published gallery. The scaffold's navigation is adaptive, so a phone and a tablet
+      # are genuinely different screens rather than the same one at two sizes — which is exactly
+      # what the gallery should show a visitor.
+      #
+      # `device` is a name PREFIX and `os` a major version: runner images retire exact device
+      # names and runtimes, and a pinned one starts failing the day the image moves.
+      ios-devices: |
+        device=iPhone,           os=iOS 26, orientation=portrait
+        device=iPad Pro 13-inch, os=iOS 26, orientation=landscape, slug=ipad
       preflight-checks: fmt, clippy, test
       # Build against day's main, not the revision Cargo.lock happens to pin. The lock is
       # NOT committed here, unlike an ordinary app: this one pins nothing. The preflight resolves
