@@ -70,6 +70,12 @@ jobs:
       ios-devices: |
         device=iPhone,           orientation=portrait
         device=iPad Pro 13-inch, orientation=landscape, slug=ipad
+      # The same two form factors on Android. `device` here is an exact `avdmanager list device`
+      # id rather than a prefix, and the tablet runs landscape so the gallery shows the wide
+      # navigation split both platforms grow at that width.
+      android-devices: |
+        device=pixel_5,      os=36, orientation=portrait
+        device=pixel_tablet, os=36, orientation=landscape, slug=tablet
       preflight-checks: fmt, clippy, test
       # Build against day's main, not the revision Cargo.lock happens to pin. The lock is
       # NOT committed here, unlike an ordinary app: this one pins nothing. The preflight resolves
