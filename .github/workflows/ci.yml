@@ -65,9 +65,13 @@ jobs:
       #
       # `device` is a name PREFIX and `os` a major version: runner images retire exact device
       # names and runtimes, and a pinned one starts failing the day the image moves.
+      # The iPad names a `runner=` because turning a simulator needs the CoreDevice that Xcode 27
+      # installs; the default images stop at Xcode 26.6, whose devicectl cannot see simulators at
+      # all, and the captures then come out portrait. It pins no `os=` because that image carries
+      # only its own iOS runtime, and the newest installed one is the right answer there.
       ios-devices: |
         device=iPhone,           os=iOS 26, orientation=portrait
-        device=iPad Pro 13-inch, os=iOS 26, orientation=landscape, slug=ipad
+        device=iPad Pro 13-inch, orientation=landscape, slug=ipad, runner=xcode-27
       preflight-checks: fmt, clippy, test
       # Build against day's main, not the revision Cargo.lock happens to pin. The lock is
       # NOT committed here, unlike an ordinary app: this one pins nothing. The preflight resolves
