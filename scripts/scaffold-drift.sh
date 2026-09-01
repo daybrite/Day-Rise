@@ -46,7 +46,7 @@ set -euo pipefail
 # ---------------------------------------------------------------------------------------------
 is_excluded() {
   case "$1" in
-    .git/* | .github/* | scripts/* | Cargo.lock | .gitignore) return 0 ;;
+    README.md | .git/* | .github/* | scripts/* | Cargo.lock | .gitignore) return 0 ;;
     resource/icons/icons.lock.json) return 0 ;;
     *) return 1 ;;
   esac
