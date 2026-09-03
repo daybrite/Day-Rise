@@ -52,6 +52,53 @@ is_excluded() {
   esac
 }
 
+# ---------------------------------------------------------------------------------------------
+# Lines that carry a version, which this checkout is allowed to set for itself.
+#
+# A fork bumps `version` in Cargo.toml when it ships, and MARKETING_VERSION /
+# CURRENT_PROJECT_VERSION in the two .xcconfig files beside it. `day new` always writes 0.1.0
+# and 1, so a byte compare reports every release as drift for the life of the repo — a
+# treadmill rather than a signal, like icons.lock.json above.
+#
+# Those files are still compared in full. Only the version VALUES are taken from this checkout
+# first, so everything else — including the version lines themselves, were one renamed or
+# dropped from the template — still fails the check.
+# ---------------------------------------------------------------------------------------------
+has_version_lines() {
+  case "$1" in
+    Cargo.toml | */Cargo.toml | *.xcconfig) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+# keep_versions MINE THEIRS — THEIRS on stdout, with each version line replaced by this
+# checkout's. Both the comparison and `--merge` go through it, so the two can never disagree
+# about which lines those are.
+#
+# The Cargo pattern is anchored at column one, which in a manifest is the [package] key and
+# nothing else: a dependency's version reads `serde = { version = "1" }`, indented and preceded
+# by its name. One line per key is assumed, which is what a scaffold writes.
+keep_versions() {
+  awk '
+    function key(line) {
+      if (line ~ /^version = "/)                     return "version"
+      if (line ~ /^MARKETING_VERSION[ \t]*=/)        return "MARKETING_VERSION"
+      if (line ~ /^CURRENT_PROJECT_VERSION[ \t]*=/)  return "CURRENT_PROJECT_VERSION"
+      return ""
+    }
+    NR == FNR { k = key($0); if (k != "") mine[k] = $0; next }
+    { k = key($0); if (k != "" && k in mine) print mine[k]; else print }
+  ' "$1" "$2"
+}
+
+# same_contents REL MINE THEIRS — byte-identical, or identical but for the version.
+same_contents() {
+  cmp -s "$2" "$3" && return 0
+  has_version_lines "$1" || return 1
+  keep_versions "$2" "$3" > "$WORK/fresh.versioned"
+  cmp -s "$2" "$WORK/fresh.versioned"
+}
+
 usage() {
   sed -n '2,17p' "$0" | sed 's/^# \{0,1\}//'
   exit "${1:-0}"
@@ -230,7 +277,7 @@ while IFS= read -r f; do
   [ -e "$f" ] || continue
   if [ ! -e "$SCAFFOLD/$f" ]; then
     ADDED+=("$f")
-  elif ! cmp -s "$f" "$SCAFFOLD/$f"; then
+  elif ! same_contents "$f" "$f" "$SCAFFOLD/$f"; then
     CHANGED+=("$f")
   fi
 done < "$FRESH/files.txt"
@@ -255,7 +302,16 @@ if [ "$MERGE" -eq 1 ]; then
   for f in "${CHANGED[@]:-}" "${MISSING[@]:-}"; do
     [ -n "$f" ] || continue
     mkdir -p "$(dirname "$f")"
-    cp "$SCAFFOLD/$f" "$f"
+    # A file that differs in its version AND in something real is a real change, so it is
+    # copied — but with this checkout's version carried across. Wholesale would reset a
+    # shipped 1.4.0 to the scaffold's 0.1.0, and silently, since the check above no longer
+    # reads that line.
+    if has_version_lines "$f" && [ -e "$f" ]; then
+      keep_versions "$f" "$SCAFFOLD/$f" > "$WORK/merged"
+      cp "$WORK/merged" "$f"
+    else
+      cp "$SCAFFOLD/$f" "$f"
+    fi
     echo "  updated  $f"
   done
   for f in "${ADDED[@]:-}"; do
