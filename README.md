@@ -7,7 +7,7 @@ the desktop, all in one Rust codebase and rendered with the platform's own widge
 targets.
 
 <p align="center">
-  <img src="https://daybrite.github.io/Day-Rise/gallery/macos-appkit/default/welcome.png" width="720" alt="The welcome page on macOS">
+  <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/macos-appkit/default/welcome.png" width="720" alt="The welcome page on macOS"></kbd>
 </p>
 
 ## Run it in one command
@@ -35,10 +35,10 @@ scaffold already shows a data-carrying route, two-way bindings, and a filter. Se
 native form with the theme and language pickers wired to persisted preferences.
 
 <p align="center">
-  <img src="https://daybrite.github.io/Day-Rise/gallery/ios-uikit/iphone/default/welcome.png" width="200" alt="Welcome on iPhone">
-  <img src="https://daybrite.github.io/Day-Rise/gallery/ios-uikit/iphone/default/list.png" width="200" alt="The list on iPhone">
-  <img src="https://daybrite.github.io/Day-Rise/gallery/ios-uikit/iphone/default/editor.png" width="200" alt="The detail editor on iPhone">
-  <img src="https://daybrite.github.io/Day-Rise/gallery/ios-uikit/iphone/default/settings.png" width="200" alt="Settings on iPhone">
+  <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/ios-uikit/iphone/default/welcome.png" width="200" alt="Welcome on iPhone"></kbd>
+  <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/ios-uikit/iphone/default/list.png" width="200" alt="The list on iPhone"></kbd>
+  <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/ios-uikit/iphone/default/editor.png" width="200" alt="The detail editor on iPhone"></kbd>
+  <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/ios-uikit/iphone/default/settings.png" width="200" alt="Settings on iPhone"></kbd>
 </p>
 
 The layout follows the window. The walkthrough resizes it through the compact, medium, and
@@ -46,11 +46,11 @@ expanded size classes and captures each one, and on the desktop it opens a secon
 File menu:
 
 <p align="center">
-  <img src="https://daybrite.github.io/Day-Rise/gallery/macos-appkit/default/compact.png" width="360" alt="The compact size class on macOS">
-  <img src="https://daybrite.github.io/Day-Rise/gallery/macos-appkit/default/expanded.png" width="360" alt="The expanded size class on macOS">
+  <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/macos-appkit/default/compact.png" width="360" alt="The compact size class on macOS"></kbd>
+  <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/macos-appkit/default/expanded.png" width="360" alt="The expanded size class on macOS"></kbd>
 </p>
 <p align="center">
-  <img src="https://daybrite.github.io/Day-Rise/gallery/macos-appkit/default/after-new-window.png" width="720" alt="A second window on macOS">
+  <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/macos-appkit/default/after-new-window.png" width="720" alt="A second window on macOS"></kbd>
 </p>
 
 ## The same code on every platform
@@ -60,11 +60,11 @@ publishes the results to the [gallery](https://daybrite.dev/gallery/Day-Rise/).
 
 | Windows · XAML | Linux · GTK | Linux · Qt |
 |:---:|:---:|:---:|
-| <img src="https://daybrite.github.io/Day-Rise/gallery/windows-xaml/default/editor.png" width="300" alt="The editor on Windows"> | <img src="https://daybrite.github.io/Day-Rise/gallery/linux-gtk/default/editor.png" width="300" alt="The editor on GTK"> | <img src="https://daybrite.github.io/Day-Rise/gallery/linux-qt/default/editor.png" width="300" alt="The editor on Qt"> |
+| <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/windows-xaml/default/editor.png" width="300" alt="The editor on Windows"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/linux-gtk/default/editor.png" width="300" alt="The editor on GTK"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/linux-qt/default/editor.png" width="300" alt="The editor on Qt"></kbd> |
 
 | Web · DOM | Android · Material | HarmonyOS · ArkUI |
 |:---:|:---:|:---:|
-| <img src="https://daybrite.github.io/Day-Rise/gallery/web-dom/default/editor.png" width="300" alt="The editor in the browser"> | <img src="https://daybrite.github.io/Day-Rise/gallery/android-mdc/pixel-5/default/editor.png" width="150" alt="The editor on Android"> | <img src="https://daybrite.github.io/Day-Rise/gallery/harmony-arkui/default/editor.png" width="150" alt="The editor on HarmonyOS"> |
+| <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/web-dom/default/editor.png" width="300" alt="The editor in the browser"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/android-mdc/pixel-5/default/editor.png" width="150" alt="The editor on Android"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/harmony-arkui/default/list.png" width="150" alt="The list on HarmonyOS"></kbd> |
 
 ## Build from a clone
 
