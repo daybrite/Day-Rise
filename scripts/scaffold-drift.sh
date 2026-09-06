@@ -36,18 +36,18 @@ set -euo pipefail
 #               still builds `day new` output, so it ignores Cargo.lock and resolves day's main
 #               afresh on every run — evergreen by construction. That difference is the point of
 #               the repo, not drift, so comparing the file would fail forever.
-#   icons.lock.json
-#               records which CLI rendered the icons (`"generator": "day-cli 0.2.6 (resvg-0.45)"`),
-#               so it differs from a fresh scaffold after EVERY day-cli version bump while the
-#               icons it hashes are byte-identical — a release treadmill rather than a signal. The
-#               rendered PNGs beside it are still compared here one by one, so a real icon change
-#               still fails; only the provenance stamp is skipped. `day icon --check` remains the
-#               gate that reads this file, and it is unaffected.
+#   build/      output, never source. `day new` ends by running `day prepare`, which renders
+#               the app icon into build/day/host/ (the Xcode catalogs, the Android mipmaps, the
+#               harmony media, and host.lock.json — see docs/icons.md in day); the checked-in
+#               host projects read from there, and `day build` regenerates it on every machine.
+#               The fresh scaffold is walked with `find`, so those files are in its list, while
+#               this repository is walked with `git ls-files`, which honors the .gitignore that
+#               drops build/ — comparing the two would report every host file as missing here.
+#               The master they derive from, resource/icons/icon.svg, is still compared.
 # ---------------------------------------------------------------------------------------------
 is_excluded() {
   case "$1" in
-    README.md | .git/* | .github/* | scripts/* | Cargo.lock | .gitignore) return 0 ;;
-    resource/icons/icons.lock.json) return 0 ;;
+    README.md | .git/* | .github/* | scripts/* | Cargo.lock | .gitignore | build/*) return 0 ;;
     *) return 1 ;;
   esac
 }
