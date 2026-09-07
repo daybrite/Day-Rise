@@ -68,7 +68,7 @@ jobs:
       # No `os=` pin on either: the runner image carries one iOS runtime and the newest installed
       # is always the right answer, where a pinned major fails the day the image moves on.
       ios-devices: |
-        device=iPhone,           orientation=portrait
+        device=iPhone * Pro Max, orientation=portrait,  slug=iphone
         device=iPad Pro 13-inch, orientation=landscape, slug=ipad
       # The same two form factors on Android. `device` here is an exact `avdmanager list device`
       # id rather than a prefix, and the tablet runs landscape so the gallery shows the wide
