@@ -49,7 +49,7 @@ jobs:
   # Build, run the dayscripts, and publish the project site.
   # ---------------------------------------------------------------------------
   app:
-    uses: daybrite/actions/.github/workflows/build-day-app.yml@main
+    uses: daybrite/actions/.github/workflows/dayapp.yml@main
     secrets: inherit
     with:
       targets: macos-appkit, ios-uikit, android-mdc, linux-gtk, linux-qt, windows-xaml, harmony-arkui, web-dom
