@@ -64,7 +64,7 @@ publishes the results to the [gallery](https://daybrite.dev/gallery/Day-Rise/).
 
 | Web · DOM | Android · Material | HarmonyOS · ArkUI |
 |:---:|:---:|:---:|
-| <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/web-dom/default/editor.png" width="300" alt="The editor in the browser"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/android-mdc/pixel-5/default/editor.png" width="150" alt="The editor on Android"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/harmony-arkui/default/list.png" width="150" alt="The list on HarmonyOS"></kbd> |
+| <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/web-dom/default/editor.png" width="300" alt="The editor in the browser"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/android-mdc/phone/default/editor.png" width="150" alt="The editor on Android"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/harmony-arkui/default/list.png" width="150" alt="The list on HarmonyOS"></kbd> |
 
 ## Build from a clone
 
