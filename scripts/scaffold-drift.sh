@@ -55,10 +55,10 @@ is_excluded() {
 # ---------------------------------------------------------------------------------------------
 # Lines that carry a version, which this checkout is allowed to set for itself.
 #
-# A fork bumps `version` in Cargo.toml when it ships, and MARKETING_VERSION /
-# CURRENT_PROJECT_VERSION in the two .xcconfig files beside it. `day new` always writes 0.1.0
-# and 1, so a byte compare reports every release as drift for the life of the repo — a
-# treadmill rather than a signal, like icons.lock.json above.
+# A fork bumps `version` in Cargo.toml when it ships, the `[app]` build number in Day.toml, and
+# MARKETING_VERSION / CURRENT_PROJECT_VERSION in the two .xcconfig files beside it. `day new`
+# always writes 0.1.0 and 1, so a byte compare reports every release as drift for the life of
+# the repo — a treadmill rather than a signal, like icons.lock.json above.
 #
 # Those files are still compared in full. Only the version VALUES are taken from this checkout
 # first, so everything else — including the version lines themselves, were one renamed or
@@ -66,7 +66,7 @@ is_excluded() {
 # ---------------------------------------------------------------------------------------------
 has_version_lines() {
   case "$1" in
-    Cargo.toml | */Cargo.toml | *.xcconfig) return 0 ;;
+    Cargo.toml | */Cargo.toml | Day.toml | *.xcconfig) return 0 ;;
     *) return 1 ;;
   esac
 }
@@ -77,11 +77,14 @@ has_version_lines() {
 #
 # The Cargo pattern is anchored at column one, which in a manifest is the [package] key and
 # nothing else: a dependency's version reads `serde = { version = "1" }`, indented and preceded
-# by its name. One line per key is assumed, which is what a scaffold writes.
+# by its name. The Day.toml build number is also a column-one key, and matches only as an
+# integer: Cargo.toml's `build = "build.rs"` sits at column one too, and a change to that is
+# real drift. One line per key is assumed, which is what a scaffold writes.
 keep_versions() {
   awk '
     function key(line) {
       if (line ~ /^version = "/)                     return "version"
+      if (line ~ /^build = [0-9]/)                   return "build"
       if (line ~ /^MARKETING_VERSION[ \t]*=/)        return "MARKETING_VERSION"
       if (line ~ /^CURRENT_PROJECT_VERSION[ \t]*=/)  return "CURRENT_PROJECT_VERSION"
       return ""
