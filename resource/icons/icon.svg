@@ -1,1 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><defs><linearGradient id="day-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4eef9"/><stop offset="1" stop-color="#e3d3ef"/></linearGradient><radialGradient id="day-glow"><stop offset="0" stop-color="#7029ab" stop-opacity="0.18"/><stop offset="1" stop-color="#7029ab" stop-opacity="0"/></radialGradient></defs><g id="day:background"><rect width="1024" height="1024" fill="url(#day-bg)"/><circle cx="512" cy="512" r="470" fill="url(#day-glow)"/></g><g id="day:foreground"><rect x="400.9" y="228.2" width="212.7" height="132.9" rx="65.9" fill="#7029ab" transform="rotate(-1.2 507.3 294.7)"/><rect x="591.5" y="332.8" width="212.7" height="132.9" rx="65.9" fill="#aa6919" transform="rotate(58.8 697.8 399.3)"/><rect x="596.2" y="550.1" width="212.7" height="132.9" rx="65.9" fill="#7029ab" transform="rotate(118.8 702.5 616.6)"/><rect x="410.3" y="662.8" width="212.7" height="132.9" rx="65.9" fill="#aa6919" transform="rotate(178.8 516.7 729.3)"/><rect x="219.8" y="558.2" width="212.7" height="132.9" rx="65.9" fill="#7029ab" transform="rotate(238.8 326.2 624.7)"/><rect x="215.1" y="341.0" width="212.7" height="132.9" rx="65.9" fill="#aa6919" transform="rotate(298.8 321.5 407.4)"/><circle cx="512.0" cy="512.0" r="70.8" fill="#3c1e54"/></g><g id="day:monochrome" display="none"><rect x="400.9" y="228.2" width="212.7" height="132.9" rx="65.9" fill="#000000" transform="rotate(-1.2 507.3 294.7)"/><rect x="591.5" y="332.8" width="212.7" height="132.9" rx="65.9" fill="#000000" transform="rotate(58.8 697.8 399.3)"/><rect x="596.2" y="550.1" width="212.7" height="132.9" rx="65.9" fill="#000000" transform="rotate(118.8 702.5 616.6)"/><rect x="410.3" y="662.8" width="212.7" height="132.9" rx="65.9" fill="#000000" transform="rotate(178.8 516.7 729.3)"/><rect x="219.8" y="558.2" width="212.7" height="132.9" rx="65.9" fill="#000000" transform="rotate(238.8 326.2 624.7)"/><rect x="215.1" y="341.0" width="212.7" height="132.9" rx="65.9" fill="#000000" transform="rotate(298.8 321.5 407.4)"/><circle cx="512.0" cy="512.0" r="70.8" fill="#000000"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- First Light: a half sun on the horizon under a fan of tapered rays. Teal sky against an
+       amber motif — complementary, so the silhouette holds at 16 px. -->
+  <defs>
+    <linearGradient id="fl-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#08363f"/>
+      <stop offset="0.62" stop-color="#1f6f6d"/>
+      <stop offset="1" stop-color="#f0a95c"/>
+    </linearGradient>
+    <radialGradient id="fl-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd98a" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#ffd98a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="fl-sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff0c4"/>
+      <stop offset="1" stop-color="#ffb703"/>
+    </linearGradient>
+  </defs>
+  <g id="day:background">
+    <rect width="1024" height="1024" fill="url(#fl-sky)"/>
+    <circle cx="512" cy="640" r="360" fill="url(#fl-glow)"/>
+    <path d="M0 640 L1024 640 L1024 1024 L0 1024 Z" fill="#07262c"/>
+    <rect x="0" y="632" width="1024" height="10" fill="#ffd98a" opacity="0.55"/>
+  </g>
+  <g id="day:foreground">
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#ffd166" transform="translate(512 640) rotate(-62)"/>
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#ffd166" transform="translate(512 640) rotate(-41)"/>
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#ffd166" transform="translate(512 640) rotate(-20)"/>
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#ffd166" transform="translate(512 640)"/>
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#ffd166" transform="translate(512 640) rotate(20)"/>
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#ffd166" transform="translate(512 640) rotate(41)"/>
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#ffd166" transform="translate(512 640) rotate(62)"/>
+    <path d="M352 640 A 160 160 0 0 1 672 640 Z" fill="#ffb703"/>
+  </g>
+  <g id="day:monochrome" display="none">
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#000000" transform="translate(512 640) rotate(-62)"/>
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#000000" transform="translate(512 640) rotate(-41)"/>
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#000000" transform="translate(512 640) rotate(-20)"/>
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#000000" transform="translate(512 640)"/>
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#000000" transform="translate(512 640) rotate(20)"/>
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#000000" transform="translate(512 640) rotate(41)"/>
+    <path d="M-20 -206 L0 -330 L20 -206 Z" fill="#000000" transform="translate(512 640) rotate(62)"/>
+    <path d="M352 640 A 160 160 0 0 1 672 640 Z" fill="#000000"/>
+  </g>
+</svg>

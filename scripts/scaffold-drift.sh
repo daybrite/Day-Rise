@@ -43,11 +43,18 @@ set -euo pipefail
 #               The fresh scaffold is walked with `find`, so those files are in its list, while
 #               this repository is walked with `git ls-files`, which honors the .gitignore that
 #               drops build/ — comparing the two would report every host file as missing here.
-#               The master they derive from, resource/icons/icon.svg, is still compared.
+#   resource/icons/
+#               The app's own icon, and the one other file this repository deliberately does not
+#               copy from the scaffold. `day new` seeds a GENERATED master from the app id, while
+#               this checkout ships a hand-authored one, so a byte compare would report the icon
+#               as drift for the life of the repo — the same treadmill as .gitignore above. The
+#               whole directory is excluded, not just icon.svg, so a per-family override
+#               (ios.svg, android.svg, …) or a tuned AppIcon.icon/ bundle beside it reads the
+#               same way. Everything derived FROM the master still lives under build/.
 # ---------------------------------------------------------------------------------------------
 is_excluded() {
   case "$1" in
-    README.md | .git/* | .github/* | scripts/* | Cargo.lock | .gitignore | build/*) return 0 ;;
+    README.md | .git/* | .github/* | scripts/* | Cargo.lock | .gitignore | build/* | resource/icons/*) return 0 ;;
     *) return 1 ;;
   esac
 }
