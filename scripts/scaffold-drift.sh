@@ -30,7 +30,7 @@ set -euo pipefail
 #               own day checkout, so it turns up here untracked and must not read as drift. The
 #               repo root's exactly — the scaffold is a single cargo workspace, so a lock
 #               elsewhere would be real drift.
-#   .gitignore  the one file this repository is DELIBERATELY not a faithful copy in. The scaffold
+#   .gitignore  a file this repository is DELIBERATELY not a faithful copy in. The scaffold
 #               tells an ordinary app to commit its lock, which is Cargo's guidance for an end
 #               product. Day-Rise wants the opposite: it exists to prove the CURRENT framework
 #               still builds `day new` output, so it ignores Cargo.lock and resolves day's main
@@ -44,17 +44,22 @@ set -euo pipefail
 #               this repository is walked with `git ls-files`, which honors the .gitignore that
 #               drops build/ — comparing the two would report every host file as missing here.
 #   resource/icons/
-#               The app's own icon, and the one other file this repository deliberately does not
-#               copy from the scaffold. `day new` seeds a GENERATED master from the app id, while
+#               The app's own icon. `day new` seeds a GENERATED master from the app id, while
 #               this checkout ships a hand-authored one, so a byte compare would report the icon
 #               as drift for the life of the repo — the same treadmill as .gitignore above. The
 #               whole directory is excluded, not just icon.svg, so a per-family override
 #               (ios.svg, android.svg, …) or a tuned AppIcon.icon/ bundle beside it reads the
 #               same way. Everything derived FROM the master still lives under build/.
+#   resource/vectors/app_mark.svg
+#               The Welcome page's copy of that icon. `day new` copies its generated master here
+#               once and `day icon` never refreshes it, so this checkout keeps a copy of the
+#               hand-authored icon instead. Comparing it would report drift for the same reason
+#               as the icon itself, and `--merge` would put the generated mark back on the
+#               Welcome page.
 # ---------------------------------------------------------------------------------------------
 is_excluded() {
   case "$1" in
-    README.md | .git/* | .github/* | scripts/* | Cargo.lock | .gitignore | build/* | resource/icons/*) return 0 ;;
+    README.md | .git/* | .github/* | scripts/* | Cargo.lock | .gitignore | build/* | resource/icons/* | resource/vectors/app_mark.svg) return 0 ;;
     *) return 1 ;;
   esac
 }
