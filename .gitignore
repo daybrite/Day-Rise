@@ -38,6 +38,13 @@ platform/android/.gradle/
 platform/android/**/build/
 platform/android/local.properties
 
+# Gradle's daemon JVM criteria, written by its `updateDaemonJvm` task: a pinned vendor and
+# version plus foojay download URLs, chosen on one developer's machine. A project that wants to
+# pin its daemon JVM commits this on purpose (`git add -f`); here it only ever arrives by
+# accident, and once did — reported as scaffold drift, because `day new` scaffolds no such file
+# and this checkout has to match what it produces.
+platform/android/gradle/gradle-daemon-jvm.properties
+
 # Android Studio writes its project model into the Gradle root it opens. The Xcode counterpart
 # (xcuserdata/) is above; this is the same thing for the other IDE, and without it the first
 # person to open platform/android in Studio leaves a dozen untracked files behind.
