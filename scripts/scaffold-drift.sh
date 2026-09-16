@@ -32,7 +32,7 @@ set -euo pipefail
 #               elsewhere would be real drift.
 #   .gitignore  a file this repository is DELIBERATELY not a faithful copy in. The scaffold
 #               tells an ordinary app to commit its lock, which is Cargo's guidance for an end
-#               product. Day-Rise wants the opposite: it exists to prove the CURRENT framework
+#               product. Day-Rise wants the opposite: it exists to prove the current framework
 #               still builds `day new` output, so it ignores Cargo.lock and resolves day's main
 #               afresh on every run — evergreen by construction. That difference is the point of
 #               the repo, not drift, so comparing the file would fail forever.
@@ -49,7 +49,7 @@ set -euo pipefail
 #               as drift for the life of the repo — the same treadmill as .gitignore above. The
 #               whole directory is excluded, not just icon.svg, so a per-family override
 #               (ios.svg, android.svg, …) or a tuned AppIcon.icon/ bundle beside it reads the
-#               same way. Everything derived FROM the master still lives under build/.
+#               same way. Everything derived from the master still lives under build/.
 #   resource/vectors/app_mark.svg
 #               The Welcome page's copy of that icon. `day new` copies its generated master here
 #               once and `day icon` never refreshes it, so this checkout keeps a copy of the
@@ -83,7 +83,7 @@ has_version_lines() {
   esac
 }
 
-# keep_versions MINE THEIRS — THEIRS on stdout, with each version line replaced by this
+# keep_versions MINE theirs — theirs on stdout, with each version line replaced by this
 # checkout's. Both the comparison and `--merge` go through it, so the two can never disagree
 # about which lines those are.
 #
@@ -106,7 +106,7 @@ keep_versions() {
   ' "$1" "$2"
 }
 
-# same_contents REL MINE THEIRS — byte-identical, or identical but for the version.
+# same_contents REL MINE theirs — byte-identical, or identical but for the version.
 same_contents() {
   cmp -s "$2" "$3" && return 0
   has_version_lines "$1" || return 1
@@ -211,7 +211,7 @@ elif [ "$USE_LOCAL" -eq 1 ]; then
   echo "> building day-cli from $REPO"
   # Unconditional: "if needed" is cargo's call, and a stale binary would compare this checkout
   # against a template edit that is not in it yet — the exact question --local exists to answer.
-  # Run from the day repo so cargo reads THAT workspace's config, not this project's.
+  # Run from the day repo so cargo reads that workspace's config, not this project's.
   (cd "$REPO" && cargo build -q -p day-cli)
   DAY_CLI="${CARGO_TARGET_DIR:-$REPO/target}/debug/day"
   [ -x "$DAY_CLI" ] || {
@@ -264,7 +264,7 @@ SCAFFOLD="$FRESH/$APP_REPO"
 # Compare. Both directions, because a file this checkout DROPPED is drift just as much as one it
 # added — and neither shows up if you only walk one tree.
 # ---------------------------------------------------------------------------------------------
-# Tracked files PLUS untracked ones that are not ignored. Plain `git ls-files` lists only the
+# Tracked files plus untracked ones that are not ignored. Plain `git ls-files` lists only the
 # index, which on a freshly scaffolded repo with no commits is nearly empty — and an empty list
 # makes this whole check pass without comparing anything.
 if git rev-parse --git-dir >/dev/null 2>&1; then
@@ -317,7 +317,7 @@ if [ "$MERGE" -eq 1 ]; then
   for f in "${CHANGED[@]:-}" "${MISSING[@]:-}"; do
     [ -n "$f" ] || continue
     mkdir -p "$(dirname "$f")"
-    # A file that differs in its version AND in something real is a real change, so it is
+    # A file that differs in its version and in something real is a real change, so it is
     # copied — but with this checkout's version carried across. Wholesale would reset a
     # shipped 1.4.0 to the scaffold's 0.1.0, and silently, since the check above no longer
     # reads that line.
