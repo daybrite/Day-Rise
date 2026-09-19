@@ -52,7 +52,7 @@ set -euo pipefail
 #               same way. Everything derived from the master still lives under build/.
 #   resource/vectors/app_mark.svg
 #               The Welcome page's copy of that icon. `day new` copies its generated master here
-#               once and `day icon` never refreshes it, so this checkout keeps a copy of the
+#               once and `day icon build` never refreshes it, so this checkout keeps a copy of the
 #               hand-authored icon instead. Comparing it would report drift for the same reason
 #               as the icon itself, and `--merge` would put the generated mark back on the
 #               Welcome page.
