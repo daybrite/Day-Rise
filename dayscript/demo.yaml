@@ -92,9 +92,11 @@ flow:
   # --- Settings -----------------------------------------------------------------------------
   # A section on the phones; a Settings window on the desktops, where the route does not exist.
   - navigate: { route: settings, skip_on: [appkit, gtk, qt, xaml] }
-  # The theme row appears only where the toolkit can override the appearance at runtime.
-  # android-mdc cannot, so the row is left out there. The language row is always present.
-  - assert_visible: { id: theme-picker, skip_on: [appkit, gtk, qt, xaml, mdc] }
+  # The theme row appears only where the toolkit can override the appearance at runtime
+  # (`Cap::Appearance`, docs/coverage-matrix.md). android-mdc and harmony-arkui cannot, so the
+  # settings piece builds no row there and there is nothing to assert. The language row is
+  # always present.
+  - assert_visible: { id: theme-picker, skip_on: [appkit, gtk, qt, xaml, mdc, arkui] }
   - assert_visible: { id: language-picker, skip_on: [appkit, gtk, qt, xaml] }
   - screenshot: settings
 
