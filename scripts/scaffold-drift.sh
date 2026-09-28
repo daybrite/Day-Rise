@@ -22,8 +22,10 @@ set -euo pipefail
 # Paths that are never compared.
 #
 #   .git/       not source.
-#   .github/    `day new` scaffolds no workflow, so the CI file would report itself forever.
-#   scripts/    this script, likewise: `day new` does not produce it.
+#   .github/    `day new` scaffolds the shared workflow on `targets: all`; this repository's
+#               copy adds the scaffold-drift job above the same `app` job, so comparing it
+#               would report that job forever.
+#   scripts/    this script: `day new` does not produce it.
 #   Cargo.lock  `day new` emits no lock at all, and this repository does not commit one either
 #               (it tracks day's main, so the preflight resolves the lock itself — see ci.yml).
 #               A local `day patch --local` build still WRITES one, pointing at the developer's
