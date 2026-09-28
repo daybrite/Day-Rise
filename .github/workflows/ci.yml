@@ -31,7 +31,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Install the day CLI
-        uses: daybrite/actions/.github/actions/setup-day-cli@main
+        uses: daybrite/actions/.github/actions/setup-day-cli@v1
         with:
           # The framework this reference is generated FROM. `latest` would compare the checkout
           # against a published CLI while the template lives on main, and report drift that is
@@ -50,7 +50,7 @@ jobs:
   # Build, run the dayscripts, and publish the project site.
   # ---------------------------------------------------------------------------
   app:
-    uses: daybrite/actions/.github/workflows/dayapp.yml@main
+    uses: daybrite/actions/.github/workflows/dayapp.yml@v1
     permissions:
       contents: write # release-asset upload on tag builds
       pages: write    # web-dom → GitHub Pages (deploy-web)
