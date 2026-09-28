@@ -32,11 +32,6 @@ jobs:
 
       - name: Install the day CLI
         uses: daybrite/actions/.github/actions/setup-day-cli@v1
-        with:
-          # The framework this reference is generated FROM. `latest` would compare the checkout
-          # against a published CLI while the template lives on main, and report drift that is
-          # really just a release lag.
-          version: main
 
       - name: Scaffold a fresh app and diff it against this checkout
         # The check itself lives in scripts/scaffold-drift.sh so it can be run by hand on macOS or
@@ -58,8 +53,6 @@ jobs:
     secrets: inherit
     with:
       targets: macos-appkit, ios-uikit, android-mdc, linux-gtk, linux-qt, windows-xaml, harmony-arkui, web-dom
-      # Same framework the drift job scaffolds from, so the CLI and the template agree.
-      day-version: main
       # `auto` picks up dayscript/demo.yaml — the walkthrough that drives every feature the
       # app ships, and whose screenshots become the project site's gallery.
       scripts: auto
@@ -70,10 +63,9 @@ jobs:
       # be overwritten before it was ever read — while still being something a local `day patch
       # --local` build silently rewrites into machine-local paths and something a human can commit
       # by accident. This repository exists to prove the current framework still builds what
-      # `day new` emits, so tracking main IS the pin. Same reasoning as `day-version: main` above,
-      # applied to the app's own dependency.
+      # `day new` emits, so tracking main IS the pin: the CLI the workflow installs by default
+      # (`day-version` is main unless a caller names another), applied to the app's own dependency.
       update-day-deps: true
       # website/site.toml turns this into a full daysite project site, with the web-dom build
       # hosted under webapp/.
       deploy-web: true
-      daysite-version: main
