@@ -52,7 +52,7 @@ jobs:
       id-token: write # deploy-pages OIDC token (deploy-web)
     secrets: inherit
     with:
-      targets: macos-appkit, ios-uikit, android-mdc, linux-gtk, linux-qt, windows-xaml, harmony-arkui, web-dom
+      targets: macos-appkit, ios-uikit, android-mdc, linux-gtk, linux-qt, windows-winui, harmony-arkui, web-dom
       # `auto` picks up dayscript/demo.yaml — the walkthrough that drives every feature the
       # app ships, and whose screenshots become the project site's gallery.
       scripts: auto
