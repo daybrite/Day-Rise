@@ -13,11 +13,14 @@
 # newest build of the default branch at /<locale>/main/, built from the last CI run and marked
 # as a development build. Before the first release, main is what /<locale>/ shows.
 # https://github.com/daybrite/daysite#build-channels
+# Setup, customization, GitHub Pages, and custom domains:
+# https://daybrite.dev/docs/websites
 #
 # Preview locally:
 #   cd website
 #   git clone https://github.com/daybrite/daysite .daysite   # gitignored
-#   npm --prefix .daysite install
+#   npm --prefix .daysite ci
+#   node .daysite/scripts/install-customization.mjs # optional theme/project dependencies
 #   node .daysite/scripts/preview.mjs           # this checkout, one channel
 #   node .daysite/scripts/preview.mjs --ci      # both channels, from GitHub (needs `gh`)
 
@@ -33,6 +36,10 @@ host = "https://daybrite.github.io/Day-Rise"
 # The app's localized store/ name titles the site; set `title` only to differ from it.
 # title = "Day Rise"
 # tagline = ""
+
+# A Markdown file for the About section, relative to this project's root, shown instead of the
+# store description. Without it, a listing with no description shows README.md.
+# about = "README.md"
 
 # Brand accent (any CSS color) and starting theme: light | dark | system.
 # accent-color = "#3B82F6"
@@ -63,3 +70,12 @@ host = "https://daybrite.github.io/Day-Rise"
 # Footer line, printed under the Day attribution; {year} interpolates. Absent by default: a
 # copyright notice is yours to write, not the scaffold's to guess.
 # footer = "© {year} Day Rise"
+
+# Reusable theme (optional; keep this table after the top-level site settings).
+# The repository must be published and the actions/daysite revisions must support customization.
+# [theme]
+# repository = "appfair/appsite"
+# ref = "main" # A tested tag or commit can pin the theme independently of the renderer.
+# Or use path = "./theme" for a theme committed under website/theme/.
+# Project component overrides live in website/daysite.config.mjs; custom Astro pages can
+# use their own source tree and configuration. See the guide linked above.
