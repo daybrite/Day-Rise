@@ -73,10 +73,10 @@ target the app ships is listed in `Day.toml`.
 
 ```sh
 day doctor                       # toolchains present and missing, with fixes
-day launch -p macos-appkit       # build + run
-day launch -p ios-uikit          # needs a booted Simulator
-day launch -p android-mdc        # needs a JDK and a running emulator or device
-day launch -p web-dom            # serves the WebAssembly build locally
+day launch -t macos-appkit       # build + run
+day launch -t ios-uikit          # needs a booted Simulator
+day launch -t android-mdc        # needs a JDK and a running emulator or device
+day launch -t web-dom            # serves the WebAssembly build locally
 ```
 
 A bare `cargo build` uses the crate's default `mock` backend, which is what lets rust-analyzer and
@@ -90,7 +90,7 @@ cargo build --no-default-features --features appkit    # or gtk / qt / uikit / m
 feature the scaffold ships and doubles as its UI test:
 
 ```sh
-day launch -p macos-appkit --script dayscript/demo.yaml
+day launch -t macos-appkit --script dayscript/demo.yaml
 ```
 
 ## Inside the code
