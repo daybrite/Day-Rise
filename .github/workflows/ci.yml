@@ -53,8 +53,8 @@ jobs:
     secrets: inherit
     with:
       targets: macos-appkit, ios-uikit, android-mdc, linux-gtk, linux-qt, windows-winui, harmony-arkui, web-dom
-      # `auto` picks up dayscript/demo.yaml — the walkthrough that drives every feature the
-      # app ships, and whose screenshots become the project site's gallery.
+      # `auto` picks up dayscript/demo.yaml — the portable smoke test whose screenshots
+      # become the project site's gallery.
       scripts: auto
       preflight-checks: fmt, clippy, test
       # Build against day's main, not the revision Cargo.lock happens to pin. The lock is
