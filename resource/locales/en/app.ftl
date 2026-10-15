@@ -1,4 +1,4 @@
-# All app-owned UI text. Appearance and language labels come from Day's catalog.
+# All app-owned UI text. Settings and About labels come from Day's catalog.
 app_title = Day Rise
 nav_welcome = Welcome
 nav_items = Items
