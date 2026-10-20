@@ -2,7 +2,6 @@
 app_title = Day Rise
 nav_welcome = Welcome
 nav_items = Items
-nav_settings = Settings
 
 welcome_title = Welcome to Day
 welcome_body =
