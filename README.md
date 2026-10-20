@@ -55,7 +55,7 @@ publishes the results to the [gallery](https://daybrite.dev/gallery/Day-Rise/).
 
 | Windows · XAML | Linux · GTK | Linux · Qt |
 |:---:|:---:|:---:|
-| <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/windows-xaml/default/editor.png" width="300" alt="The editor on Windows"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/linux-gtk/default/editor.png" width="300" alt="The editor on GTK"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/linux-qt/default/editor.png" width="300" alt="The editor on Qt"></kbd> |
+| <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/windows-winui/default/editor.png" width="300" alt="The editor on Windows"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/linux-gtk/default/editor.png" width="300" alt="The editor on GTK"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/linux-qt/default/editor.png" width="300" alt="The editor on Qt"></kbd> |
 
 | Web · DOM | Android · Material | HarmonyOS · ArkUI |
 |:---:|:---:|:---:|
