@@ -23,7 +23,7 @@ mock = ["day/mock"]
 name = "dayapp"
 
 [dependencies]
-day = { git = "https://github.com/daybrite/day.git", features = ["model"] }
+day = { package = "day-app", git = "https://github.com/daybrite/day.git", features = ["model"] }
 day-piece-settings = { git = "https://github.com/daybrite/day.git" }
 # The items are saved as JSON in the preferences (src/model.rs).
 serde = { version = "1", features = ["derive"] }
