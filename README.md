@@ -25,7 +25,7 @@ From a clone, name a target when you build or launch; `Day.toml` lists them all:
 ```sh
 day launch -t macos-appkit       # build + run
 day launch -t ios-uikit          # needs a booted Simulator
-day launch -t android-mdc        # needs a JDK and a running emulator or device
+day launch -t android-material        # needs a JDK and a running emulator or device
 day launch -t web-dom            # serves the WebAssembly build locally
 ```
 
@@ -64,7 +64,7 @@ The app's CI runs `dayscript/demo.yaml` on every target and publishes the captur
 
 | Web · DOM | Android · Material | HarmonyOS · ArkUI |
 |:---:|:---:|:---:|
-| <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/web-dom/default/editor.png" width="300" alt="The editor in the browser"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/android-mdc/phone/default/editor.png" width="150" alt="The editor on Android"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/harmony-arkui/phone/default/list.png" width="150" alt="The list on HarmonyOS"></kbd> |
+| <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/web-dom/default/editor.png" width="300" alt="The editor in the browser"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/android-material/phone/default/editor.png" width="150" alt="The editor on Android"></kbd> | <kbd><img src="https://daybrite.github.io/Day-Rise/gallery/harmony-arkui/phone/default/list.png" width="150" alt="The list on HarmonyOS"></kbd> |
 
 ## Keeping it in step with `day new`
 
