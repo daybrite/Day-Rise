@@ -12,6 +12,11 @@ on:
   release:
     types: [released]
   workflow_dispatch:
+    inputs:
+      day-main:
+        description: Build against day's main branch instead of the newest release
+        type: boolean
+        default: false
   schedule:
     - cron: "30 0,12 * * *"
 
@@ -57,15 +62,13 @@ jobs:
       # become the project site's gallery.
       scripts: auto
       preflight-checks: fmt, clippy, test
-      # Build against day's main, not the revision Cargo.lock happens to pin. The lock is
-      # Not committed here, unlike an ordinary app: this one pins nothing. The preflight resolves
-      # the lock itself and then moves the day crates to the tip of main, so a committed lock would
-      # be overwritten before it was ever read — while still being something a local `day patch
-      # --local` build silently rewrites into machine-local paths and something a human can commit
-      # by accident. This repository exists to prove the current framework still builds what
-      # `day new` emits, so tracking main IS the pin: the CLI the workflow installs by default
-      # (`day-version` is main unless a caller names another), applied to the app's own dependency.
-      update-day-deps: true
+      # Day's main on a push, the newest release nightly, never the revision a lock happens to
+      # pin. The lock is not committed here, unlike an ordinary app: this one pins nothing. The
+      # preflight resolves the lock itself, so a committed lock would be overwritten before it was
+      # ever read, while still being something a local `day patch --local` build silently
+      # rewrites into machine-local paths and something a human can commit by accident. This
+      # repository exists to prove the current framework still builds what `day new` emits.
+      day-deps: ${{ inputs.day-main && 'main' || 'auto' }}
       # website/site.toml turns this into a full daysite project site, with the web-dom build
       # hosted under webapp/.
       deploy-web: true
