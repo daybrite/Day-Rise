@@ -23,13 +23,13 @@ mock = ["day/mock"]
 name = "dayapp"
 
 [dependencies]
-day = { package = "day-app", version = "0.6.1", features = ["model"] }
-day-piece-settings = { version = "0.6.1" }
+day = { package = "day-app", version = "0.*", features = ["model"] }
+day-piece-settings = { version = "0.*" }
 # The items are saved as JSON in the preferences (src/model.rs).
 serde = { version = "1", features = ["derive"] }
 
 [build-dependencies]
-day-build = { version = "0.6.1" }
+day-build = { version = "0.*" }
 
 
 [workspace]
