@@ -5,7 +5,7 @@ schema = 1
 [app]
 id = "dev.daybrite.dayrise"
 title = "Day Rise"
-build = 8
+build = 9
 targets = ["ios-uikit", "android-material", "macos-appkit", "macos-gtk", "macos-qt", "linux-gtk", "linux-qt", "windows-winui", "harmony-arkui", "web-dom"]
 
 # The window's size and minimum size in points, for every platform with resizable windows.

@@ -35,4 +35,4 @@ day-build = { version = "0.*" }
 [workspace]
 
 [workspace.package]
-version = "0.5.0"
+version = "0.5.1"
