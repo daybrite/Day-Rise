@@ -36,6 +36,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # The CLI is built from source when no cached copy matches, and Day's minimum Rust is the
+      # current stable. The runner image's preinstalled toolchain can be a release behind.
+      - uses: dtolnay/rust-toolchain@stable
+
       - name: Install the day CLI
         uses: daybrite/actions/.github/actions/setup-day-cli@v1
 
